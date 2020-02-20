@@ -1,0 +1,38 @@
+%common-styles {
+  outline: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  @include transition(0.3s ease);
+}
+
+.searchBar {
+  width: 100%;
+  margin: 40px 0;
+  form {
+    input {
+      @extend %common-styles;
+      width: 88%;
+      border: 1px solid #eee;
+      box-sizing: border-box;
+      box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.06);
+      background-color: white;
+      font-size: 16px;
+      &:focus {
+        border: 1px solid $electric-violet;
+        padding-left: 30px;
+      }
+    }
+    .btn-search {
+      margin-left: 2%;
+      font-size: 15px;
+      border: none;
+      background-color: $electric-violet;
+      color: white;
+      @extend %common-styles;
+      cursor: pointer;
+      &:hover {
+        background-color: #510eb1;
+      }
+    }
+  }
+}

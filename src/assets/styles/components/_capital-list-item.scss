@@ -1,0 +1,23 @@
+.capital-list-item {
+  ul {
+    border: 1px solid $gallery;
+    border-radius: 5px;
+    li {
+      padding: 10px 15px;
+      border-bottom: 1px solid $gallery;
+      @include transition(0.5s ease);
+      cursor: pointer;
+      .fa-times-circle {
+        float: right;
+        color: $electric-violet;
+      }
+      &:hover {
+        background-color: $electric-violet;
+        color: white;
+        .fa-times-circle {
+          color: white;
+        }
+      }
+    }
+  }
+}
