@@ -2,11 +2,11 @@ import React from "react";
 import CapitalListItem from "./CapitalListItem";
 import { connect } from "react-redux";
 
-const CapitalList = ({ capitals }) => {
-  if (capitals.length > 0) {
+const CapitalList = ({ countries }) => {
+  if (countries.length > 0) {
     return (
       <div className="capital-list">
-        <CapitalListItem />
+        <CapitalListItem countries={countries} />
       </div>
     );
   } else {
@@ -16,7 +16,7 @@ const CapitalList = ({ capitals }) => {
 
 const mapStateToProps = state => {
   return {
-    capitals: state.capitals
+    countries: state.country.countries
   };
 };
 

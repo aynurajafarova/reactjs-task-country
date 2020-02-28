@@ -32,5 +32,16 @@
         line-height: 1.5;
       }
     }
+    .neighbors {
+      box-sizing: border-box;
+      padding: 20px 35px;
+      background-color: $gallery;
+      span {
+        font-size: 14px;
+        color: #585858;
+        letter-spacing: 0.3px;
+        line-height: 1.5;
+      }
+    }
   }
 }

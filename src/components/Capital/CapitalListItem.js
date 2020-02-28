@@ -3,26 +3,37 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 
-import { deleteCapital, fetchCountry } from "../../actions";
+import {
+  deleteCapital,
+  selectedCountry,
+  deleteCountryCode
+} from "../../actions";
 
 class CapitalListItem extends Component {
+  deleteCapitalAndCode = capital => {
+    this.props.deleteCapital(capital);
+    this.props.codes.map(code => {
+      if (capital.alpha3Code === code.alpha3Code) {
+        this.props.deleteCountryCode(code);
+      }
+      return null;
+    });
+  };
+
   render() {
-    const { capitals, deleteCapital } = this.props;
+    const { countries, selectedCountry } = this.props;
+
     return (
       <div className="capital-list-item">
         <ul>
-          {capitals.map((capital, index) => {
+          {countries.map((capital, index) => {
             return (
               <li key={index}>
-                <span
-                  onClick={() => {
-                    this.props.fetchCountry(capital);
-                  }}
-                >
-                  {capital}
+                <span onClick={() => selectedCountry(capital)}>
+                  {capital.capital}
                 </span>
                 <FontAwesomeIcon
-                  onClick={() => deleteCapital(capital)}
+                  onClick={() => this.deleteCapitalAndCode(capital)}
                   icon={faTimesCircle}
                 />
               </li>
@@ -36,10 +47,12 @@ class CapitalListItem extends Component {
 
 const mapStateToProps = state => {
   return {
-    capitals: state.capitals
+    codes: state.country.codes
   };
 };
 
-export default connect(mapStateToProps, { deleteCapital, fetchCountry })(
-  CapitalListItem
-);
+export default connect(mapStateToProps, {
+  deleteCapital,
+  selectedCountry,
+  deleteCountryCode
+})(CapitalListItem);

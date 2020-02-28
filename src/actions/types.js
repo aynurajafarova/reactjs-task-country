@@ -3,6 +3,9 @@ export const types = {
   fetchCountry: "FETCH_COUNTRY",
   handleError: "HANDLE_ERROR",
   setLoading: "SET_LOADING",
-  addCapital: "ADD_CAPITAL",
-  deleteCapital: "DELETE_CAPITAL"
+  deleteCapital: "DELETE_CAPITAL",
+  addCountry: "ADD_COUNTRY",
+  selectedCountry: "SELECTED_COUNTRY",
+  fetchCodes: "FETCH_CODES",
+  deleteCountryCode: "DELETE_COUNTRY_CODE"
 };

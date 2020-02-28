@@ -1,22 +1,14 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import {
-  searchCapital,
-  fetchCountry,
-  setLoading,
-  addCapital
-} from "../../actions";
+import { searchCapital, fetchCountry, setLoading } from "../../actions";
 
 class SearchBar extends Component {
   onSubmit = e => {
     e.preventDefault();
     this.props.fetchCountry(this.props.searchText);
+    // this.props.addCountry();
     this.props.setLoading();
-
-    if (this.props.searchText.length > 0) {
-      this.props.addCapital(this.props.searchText);
-    }
   };
 
   onChange = e => {
@@ -43,13 +35,13 @@ class SearchBar extends Component {
 
 const mapStateToProps = state => {
   return {
-    searchText: state.country.searchText
+    searchText: state.country.searchText,
+    countryInfo: state.country.countryInfo
   };
 };
 
 export default connect(mapStateToProps, {
   searchCapital,
   fetchCountry,
-  setLoading,
-  addCapital
+  setLoading
 })(SearchBar);

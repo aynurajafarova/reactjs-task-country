@@ -4,7 +4,9 @@ const initialState = {
   searchText: "",
   countryInfo: {},
   loading: false,
-  errorMessage: ""
+  errorMessage: "",
+  countries: [],
+  codes: []
 };
 
 export default (state = initialState, action) => {
@@ -17,8 +19,13 @@ export default (state = initialState, action) => {
         searchText: "",
         countryInfo: action.payload,
         errorMessage: "",
-        loading: false
+        loading: false,
+        // countries:{...state.countries, [action.payload.alpha2Code]: action.payload}
+        countries: [...state.countries, action.payload]
       };
+    // case types.addCountry:
+    // return { countries: [state.countryInfo].push(action.payload) };
+    // return { countries: state.countryInfo, ...action.payload };
     case types.handleError:
       return {
         ...state,
@@ -29,6 +36,23 @@ export default (state = initialState, action) => {
       };
     case types.setLoading:
       return { ...state, loading: true };
+    case types.deleteCapital:
+      return {
+        ...state,
+        countryInfo: {},
+        countries: [
+          ...state.countries.filter(capital => capital !== action.payload)
+        ]
+      };
+    case types.selectedCountry:
+      return { ...state, countryInfo: action.payload };
+    case types.fetchCodes:
+      return { ...state, codes: [...state.codes, action.payload] };
+    case types.deleteCountryCode:
+      return {
+        ...state,
+        codes: [...state.codes.filter(code => code !== action.payload)]
+      };
     default:
       return state;
   }
